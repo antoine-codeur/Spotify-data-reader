@@ -108,16 +108,10 @@ const TopTracksView = ({ topTracks, maxDisplayCount = 50 }: TopTracksViewProps) 
     ],
   }
 
-  // Style CSS pour les en-têtes de colonnes triables
-  const sortableStyle = {
-    cursor: 'pointer',
-    userSelect: 'none' as const
-  }
-
   // Icône pour indiquer l'ordre de tri
   const getSortIcon = (key: SortKey) => {
     if (sortKey !== key) return null
-    return sortDirection === 'asc' ? ' ▲' : ' ▼'
+    return <span className="sort-icon">{sortDirection === 'asc' ? '↑' : '↓'}</span>
   }
 
   return (
@@ -156,23 +150,38 @@ const TopTracksView = ({ topTracks, maxDisplayCount = 50 }: TopTracksViewProps) 
           />
         </div>
         
-        <table>
+        <table className="table-common">
           <thead>
             <tr>
               <th>Rank</th>
-              <th style={sortableStyle} onClick={() => handleSort('name')}>
+              <th 
+                className={`sortable ${sortKey === 'name' ? 'active' : ''}`} 
+                onClick={() => handleSort('name')}
+              >
                 Track {getSortIcon('name')}
               </th>
-              <th style={sortableStyle} onClick={() => handleSort('artist')}>
+              <th 
+                className={`sortable ${sortKey === 'artist' ? 'active' : ''}`} 
+                onClick={() => handleSort('artist')}
+              >
                 Artist {getSortIcon('artist')}
               </th>
-              <th style={sortableStyle} onClick={() => handleSort('album')}>
+              <th 
+                className={`sortable ${sortKey === 'album' ? 'active' : ''}`} 
+                onClick={() => handleSort('album')}
+              >
                 Album {getSortIcon('album')}
               </th>
-              <th style={sortableStyle} onClick={() => handleSort('count')}>
+              <th 
+                className={`sortable ${sortKey === 'count' ? 'active' : ''}`} 
+                onClick={() => handleSort('count')}
+              >
                 Plays {getSortIcon('count')}
               </th>
-              <th style={sortableStyle} onClick={() => handleSort('totalMs')}>
+              <th 
+                className={`sortable ${sortKey === 'totalMs' ? 'active' : ''}`} 
+                onClick={() => handleSort('totalMs')}
+              >
                 Time Spent {getSortIcon('totalMs')}
               </th>
             </tr>

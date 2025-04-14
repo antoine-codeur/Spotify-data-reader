@@ -1,3 +1,5 @@
+import '../styles/SearchBar.css'
+
 interface SearchBarProps {
   searchTerm: string
   onSearchChange: (term: string) => void

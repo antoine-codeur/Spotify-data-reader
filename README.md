@@ -1,13 +1,23 @@
-# Portfolio Project
+# Spotify Listening History Analyzer
 
-This portfolio project showcases web development skills using React, TypeScript, and Vite, containerized with Docker and deployed with CI/CD automation.
+A React application that analyzes your Spotify listening history data, providing insights and visualizations about your music listening habits.
 
 ## Overview
-This document provides essential information about the Portfolio project, its structure, setup, and deployment processes.
+This application helps you understand your music preferences by analyzing the JSON files from Spotify's Extended Streaming History. It provides various statistics, charts, and filterable lists of your top tracks and artists.
+
+## Features
+
+- **Data Import and Analysis**: Automatically loads and processes your Spotify Extended Streaming History JSON files
+- **Interactive Dashboard**: View comprehensive statistics about your listening history
+- **Top Tracks Analysis**: See your most played tracks with filtering, sorting, and search capabilities
+- **Artist Insights**: Explore your favorite artists with visual representations of listening patterns
+- **Time-based Filtering**: Filter your data by specific years to see how your tastes have evolved
+- **Search Functionality**: Quickly find specific tracks or artists across your listening history
+- **Responsive Design**: Works on both desktop and mobile devices
 
 ## Project Structure
 ```
-Portfolio/
+Spotify-Analyzer/
 ├── Dockerfile          # Docker configuration for containerization
 ├── eslint.config.js    # ESLint configuration for code quality
 ├── index.html          # Main HTML entry point
@@ -18,13 +28,23 @@ Portfolio/
 ├── vite.config.ts      # Vite bundler configuration
 ├── docs/               # Documentation files
 ├── public/             # Static assets served as-is
+├── Spotify-Extended-Streaming-History/ # Directory for your Spotify data files
 └── src/                # Source code
     ├── App.css         # Main application styles
     ├── App.tsx         # Main React component
     ├── index.css       # Global styles
     ├── main.tsx        # Application entry point
     ├── vite-env.d.ts   # Vite type declarations
-    └── assets/         # Project assets like images, icons, etc.
+    ├── assets/         # Project assets like images, icons, etc.
+    └── components/     # React components
+        ├── FileLoader.tsx       # Component for loading data files
+        ├── SearchBar.tsx        # Reusable search component
+        ├── StatsOverview.tsx    # Component for displaying stats summary
+        ├── StatsView.tsx        # Detailed statistics view
+        ├── TopArtistsView.tsx   # Artists analysis component
+        ├── TopTracksView.tsx    # Tracks analysis component
+        ├── types.ts             # TypeScript type definitions
+        └── YearSelector.tsx     # Year filtering component
 ```
 
 ## Setup and Installation
@@ -32,7 +52,13 @@ Portfolio/
 ### Prerequisites
 - Node.js (v18 or later)
 - npm or yarn
-- Docker (for containerization)
+- Your Spotify Extended Streaming History JSON files
+
+### Getting Your Spotify Data
+1. Request your data from Spotify by going to your account page on Spotify's website
+2. Navigate to Privacy Settings and request a download of your data
+3. Spotify will send you an email when your data is ready to download
+4. Download and extract the files, focusing on the "Spotify-Extended-Streaming-History" folder
 
 ### Local Development
 1. Clone the repository
@@ -40,11 +66,12 @@ Portfolio/
    ```bash
    npm install
    ```
-3. Start the development server:
+3. Place your Spotify data files in the `/Spotify-Extended-Streaming-History/` directory
+4. Start the development server:
    ```bash
    npm run dev
    ```
-4. The application will be available at [http://localhost:5173](http://localhost:5173)
+5. The application will be available at [http://localhost:5173](http://localhost:5173)
 
 ## Building for Production
 ```bash
@@ -57,46 +84,47 @@ This project includes Docker configuration for easy deployment.
 
 ### Building Docker Image
 ```bash
-docker build -t portfolio .
+docker build -t spotify-analyzer .
 ```
 
 ### Running Docker Container
 ```bash
-docker run -p 8080:80 portfolio
+docker run -p 8080:80 spotify-analyzer
 ```
 The application will be available at [http://localhost:8080](http://localhost:8080)
 
-## Continuous Integration/Deployment
-This project uses GitHub Actions for CI/CD. The workflow is defined in `.github/workflows/docker-image.yml`.
-
-The CI/CD pipeline will:
-1. Build the Docker image
-2. Push it to Docker Hub (when merged to main)
-
-### Required Secrets for CI/CD
-- `DOCKERHUB_USERNAME`: Your Docker Hub username
-- `DOCKERHUB_TOKEN`: Docker Hub access token
-
-## Project Conventions
-- We use the [Gitmoji convention](docs/gitmoji-convention.md) for commit messages
-- TypeScript for type safety
-- ESLint for code quality
+## Technologies Used
+- React
+- TypeScript
+- Chart.js & react-chartjs-2 for visualizations
+- Vite for fast development and building
+- CSS for styling (no framework, custom designed)
 
 ## License
-[License information]
+[MIT License]
 
 ---
 
-# Projet Portfolio
+# Analyseur d'Historique d'Écoute Spotify
 
-Ce projet de portfolio met en valeur les compétences de développement web utilisant React, TypeScript et Vite, conteneurisé avec Docker et déployé avec une automatisation CI/CD.
+Une application React qui analyse vos données d'historique d'écoute Spotify, fournissant des insights et des visualisations sur vos habitudes d'écoute musicale.
 
 ## Aperçu
-Ce document fournit des informations essentielles sur le projet Portfolio, sa structure, sa configuration et ses processus de déploiement.
+Cette application vous aide à comprendre vos préférences musicales en analysant les fichiers JSON de l'historique d'écoute étendu de Spotify. Elle fournit diverses statistiques, graphiques et listes filtrables de vos morceaux et artistes préférés.
+
+## Fonctionnalités
+
+- **Importation et Analyse de Données** : Charge et traite automatiquement vos fichiers JSON d'historique d'écoute étendu Spotify
+- **Tableau de Bord Interactif** : Visualisez des statistiques complètes sur votre historique d'écoute
+- **Analyse des Morceaux Favoris** : Consultez vos morceaux les plus écoutés avec des capacités de filtrage, de tri et de recherche
+- **Aperçu des Artistes** : Explorez vos artistes préférés avec des représentations visuelles de vos habitudes d'écoute
+- **Filtrage Temporel** : Filtrez vos données par années spécifiques pour voir comment vos goûts ont évolué
+- **Fonctionnalité de Recherche** : Trouvez rapidement des morceaux ou artistes spécifiques dans votre historique d'écoute
+- **Design Responsive** : Fonctionne aussi bien sur ordinateur que sur mobile
 
 ## Structure du Projet
 ```
-Portfolio/
+Spotify-Analyzer/
 ├── Dockerfile          # Configuration Docker pour la conteneurisation
 ├── eslint.config.js    # Configuration ESLint pour la qualité du code
 ├── index.html          # Point d'entrée HTML principal
@@ -107,13 +135,23 @@ Portfolio/
 ├── vite.config.ts      # Configuration du bundler Vite
 ├── docs/               # Fichiers de documentation
 ├── public/             # Ressources statiques servies telles quelles
+├── Spotify-Extended-Streaming-History/ # Répertoire pour vos fichiers de données Spotify
 └── src/                # Code source
     ├── App.css         # Styles de l'application principale
     ├── App.tsx         # Composant React principal
     ├── index.css       # Styles globaux
     ├── main.tsx        # Point d'entrée de l'application
     ├── vite-env.d.ts   # Déclarations de types pour Vite
-    └── assets/         # Ressources du projet comme images, icônes, etc.
+    ├── assets/         # Ressources du projet comme images, icônes, etc.
+    └── components/     # Composants React
+        ├── FileLoader.tsx       # Composant pour charger les fichiers de données
+        ├── SearchBar.tsx        # Composant de recherche réutilisable
+        ├── StatsOverview.tsx    # Composant pour afficher le résumé des statistiques
+        ├── StatsView.tsx        # Vue détaillée des statistiques
+        ├── TopArtistsView.tsx   # Composant d'analyse des artistes
+        ├── TopTracksView.tsx    # Composant d'analyse des morceaux
+        ├── types.ts             # Définitions de types TypeScript
+        └── YearSelector.tsx     # Composant de filtrage par année
 ```
 
 ## Installation et Configuration
@@ -121,55 +159,53 @@ Portfolio/
 ### Prérequis
 - Node.js (v18 ou ultérieur)
 - npm ou yarn
-- Docker (pour la conteneurisation)
+- Vos fichiers JSON d'historique d'écoute étendu Spotify
+
+### Obtenir Vos Données Spotify
+1. Demandez vos données à Spotify en allant sur la page de votre compte sur le site web de Spotify
+2. Accédez aux paramètres de confidentialité et demandez un téléchargement de vos données
+3. Spotify vous enverra un email lorsque vos données seront prêtes à être téléchargées
+4. Téléchargez et extrayez les fichiers, en vous concentrant sur le dossier "Spotify-Extended-Streaming-History"
 
 ### Développement Local
-1. Cloner le dépôt
-2. Installer les dépendances :
+1. Clonez le dépôt
+2. Installez les dépendances :
    ```bash
    npm install
    ```
-3. Démarrer le serveur de développement :
+3. Placez vos fichiers de données Spotify dans le répertoire `/Spotify-Extended-Streaming-History/`
+4. Démarrez le serveur de développement :
    ```bash
    npm run dev
    ```
-4. L'application sera disponible à l'adresse [http://localhost:5173](http://localhost:5173)
+5. L'application sera disponible à l'adresse [http://localhost:5173](http://localhost:5173)
 
 ## Construction pour la Production
 ```bash
 npm run build
 ```
-Les artéfacts de build seront stockés dans le répertoire `dist/`.
+Les artefacts de build seront stockés dans le répertoire `dist/`.
 
 ## Déploiement Docker
 Ce projet inclut une configuration Docker pour un déploiement facile.
 
 ### Construction de l'Image Docker
 ```bash
-docker build -t portfolio .
+docker build -t spotify-analyzer .
 ```
 
 ### Exécution du Conteneur Docker
 ```bash
-docker run -p 8080:80 portfolio
+docker run -p 8080:80 spotify-analyzer
 ```
 L'application sera disponible à l'adresse [http://localhost:8080](http://localhost:8080)
 
-## Intégration/Déploiement Continu
-Ce projet utilise GitHub Actions pour CI/CD. Le workflow est défini dans `.github/workflows/docker-image.yml`.
-
-Le pipeline CI/CD va :
-1. Construire l'image Docker
-2. La pousser vers Docker Hub (lors de la fusion avec main)
-
-### Secrets Requis pour CI/CD
-- `DOCKERHUB_USERNAME` : Votre nom d'utilisateur Docker Hub
-- `DOCKERHUB_TOKEN` : Token d'accès Docker Hub
-
-## Conventions du Projet
-- Nous utilisons la [convention Gitmoji](docs/gitmoji-convention.md) pour les messages de commit
-- TypeScript pour la sécurité des types
-- ESLint pour la qualité du code
+## Technologies Utilisées
+- React
+- TypeScript
+- Chart.js & react-chartjs-2 pour les visualisations
+- Vite pour un développement et une construction rapides
+- CSS pour le style (pas de framework, design personnalisé)
 
 ## Licence
-[Informations sur la licence]
+[Licence MIT]

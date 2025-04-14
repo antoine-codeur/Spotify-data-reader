@@ -1,0 +1,133 @@
+@import '../styles/common.css';
+
+.app {
+  width: 100%;
+  /* Suppression du max-width pour le mode desktop comme demandé */
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-header {
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  text-align: left;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.loading, .error {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.loading {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.error {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ff5252;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.view-selector {
+  display: flex;
+  gap: 1rem;
+}
+
+.controls-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .app {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .controls-right {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .header-left {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0.75rem;
+  }
+  
+  .app-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .app-header p {
+    font-size: 0.95rem;
+  }
+  
+  .view-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .view-selector button {
+    flex: 1;
+    text-align: center;
+  }
+}

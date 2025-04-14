@@ -2,15 +2,18 @@ import { Bar, Pie } from 'react-chartjs-2'
 import { TopArtist, formatTime } from './types'
 import { useState, useMemo } from 'react'
 import SearchBar from './SearchBar'
+import '../styles/TopArtistsView.css'
+import '../styles/TopTracksView.css' // Pour les styles partagés avec TopTracksView
 
 interface TopArtistsViewProps {
   topArtists: TopArtist[]
+  maxDisplayCount?: number
 }
 
 type SortKey = 'name' | 'count' | 'totalMs'
 type SortDirection = 'asc' | 'desc'
 
-const TopArtistsView = ({ topArtists }: TopArtistsViewProps) => {
+const TopArtistsView = ({ topArtists, maxDisplayCount = 30 }: TopArtistsViewProps) => {
   const [sortKey, setSortKey] = useState<SortKey>('count')
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -153,7 +156,7 @@ const TopArtistsView = ({ topArtists }: TopArtistsViewProps) => {
           <h3>
             {searchTerm 
               ? `Filtered Artists (${sortedAndFilteredArtists.length})`
-              : `Top ${topArtists.length} Artists`}
+              : `Top ${Math.min(maxDisplayCount, topArtists.length)} Artists`}
           </h3>
           <SearchBar 
             searchTerm={searchTerm}
@@ -178,7 +181,7 @@ const TopArtistsView = ({ topArtists }: TopArtistsViewProps) => {
             </tr>
           </thead>
           <tbody>
-            {sortedAndFilteredArtists.map((artist, index) => (
+            {sortedAndFilteredArtists.slice(0, searchTerm ? undefined : maxDisplayCount).map((artist, index) => (
               <tr key={artist.name}>
                 <td>{index + 1}</td>
                 <td>{artist.name}</td>

@@ -1,3 +1,5 @@
+import '../styles/FileLoader.css'
+
 interface FileLoaderProps {
   onReload: () => void
 }

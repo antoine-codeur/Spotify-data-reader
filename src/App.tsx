@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import './styles/App.css'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,6 +17,7 @@ import TopArtistsView from './components/TopArtistsView'
 import StatsView from './components/StatsView'
 import YearSelector from './components/YearSelector'
 import FileLoader from './components/FileLoader'
+import ThemeToggle from './components/ThemeToggle'
 
 // Register Chart.js components
 ChartJS.register(
@@ -41,6 +42,7 @@ function App() {
   const [isFilesLoaded, setIsFilesLoaded] = useState<boolean>(false)
   const [timeRange, setTimeRange] = useState<string>('all')
   const [displayCount, setDisplayCount] = useState<number>(50)
+  const [artistDisplayCount, setArtistDisplayCount] = useState<number>(30)
 
   // File paths for the JSON data
   const filePaths = [
@@ -192,8 +194,15 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Spotify Listening History Analysis</h1>
-        <p>Analyze your Spotify listening habits across years</p>
+        <div className="header-content">
+          <div className="header-left">
+            <h1>Spotify Listening History Analysis</h1>
+            <p>Analyze your Spotify listening habits across years</p>
+          </div>
+          <div className="header-right">
+            <ThemeToggle />
+          </div>
+        </div>
       </header>
 
       {isLoading && <div className="loading">Loading your Spotify data...</div>}
@@ -253,6 +262,26 @@ function App() {
                     </select>
                 </div>
               )}
+              
+              {activeView === 'artists' && (
+                <div className="display-count-selector">
+                  <label htmlFor="artistDisplayCount">Display: </label>
+                    <select 
+                    id="artistDisplayCount" 
+                    value={artistDisplayCount} 
+                    onChange={(e) => setArtistDisplayCount(Number(e.target.value))}
+                    >
+                    <option value="10">Top 10</option>
+                    <option value="20">Top 20</option>
+                    <option value="30">Top 30</option>
+                    <option value="50">Top 50</option>
+                    <option value="100">Top 100</option>
+                    <option value="200">Top 200</option>
+                    <option value="500">Top 500</option>
+                    <option value={topArtists.length}>All</option>
+                    </select>
+                </div>
+              )}
             </div>
           </div>
           
@@ -270,7 +299,12 @@ function App() {
             />
           )}
           
-          {activeView === 'artists' && <TopArtistsView topArtists={topArtists} />}
+          {activeView === 'artists' && (
+            <TopArtistsView 
+              topArtists={topArtists}
+              maxDisplayCount={artistDisplayCount}
+            />
+          )}
           
           {activeView === 'stats' && 
             <StatsView 

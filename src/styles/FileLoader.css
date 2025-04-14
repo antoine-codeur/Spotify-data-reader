@@ -1,0 +1,64 @@
+@import '../styles/common.css';
+
+.file-loader {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.file-loader h2 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.file-loader p {
+  margin-bottom: 2rem;
+}
+
+.file-loader code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}
+
+.load-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.load-button:hover {
+  background-color: #1ed760;
+}
+
+@media (max-width: 768px) {
+  .file-loader {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-loader {
+    padding: 1rem;
+  }
+  
+  .file-loader h2 {
+    font-size: 1.3rem;
+  }
+  
+  .file-loader p {
+    font-size: 0.9rem;
+  }
+  
+  .load-button {
+    width: 100%;
+    padding: 0.6rem 1rem;
+  }
+}

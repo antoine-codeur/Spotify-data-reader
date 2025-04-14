@@ -1,0 +1,42 @@
+@import '../styles/common.css';
+
+.time-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-filter select {
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--light-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.time-filter select:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.time-filter select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3);
+}
+
+@media (max-width: 768px) {
+  .time-filter {
+    width: 100%;
+  }
+  
+  .time-filter select {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-filter label {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,31 @@
+@import '../styles/common.css';
+
+.chart-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.chart-col {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Media queries pour le responsive */
+@media (max-width: 768px) {
+  .chart-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .chart-col {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-row {
+    gap: 1rem;
+  }
+}

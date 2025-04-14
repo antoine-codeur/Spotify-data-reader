@@ -1,3 +1,5 @@
+import '../styles/YearSelector.css'
+
 interface YearSelectorProps {
   timeRange: string
   yearOptions: number[]

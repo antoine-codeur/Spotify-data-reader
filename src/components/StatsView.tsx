@@ -1,4 +1,5 @@
 import { SpotifyTrack, formatTime } from './types'
+import '../styles/StatsView.css'
 
 interface StatsViewProps {
   tracks: SpotifyTrack[]

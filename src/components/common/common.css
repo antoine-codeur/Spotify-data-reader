@@ -4,6 +4,7 @@
   --primary-color: #1DB954;
   --secondary-color: #191414;
   --light-color: #FFFFFF;
+  --light-color-rgb: 255, 255, 255;
   --dark-color: #121212;
   --accent-color: #1DB954;
   --gray-color: #535353;
@@ -21,6 +22,7 @@
   --primary-color: #1DB954;
   --secondary-color: #f8f8f8;
   --light-color: #191414;
+  --light-color-rgb: 25, 20, 20;
   --dark-color: #f8f8f8;
   --accent-color: #1DB954;
   --gray-color: #757575;
@@ -126,16 +128,26 @@ body {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  outline: none; /* Retire le contour par défaut */
 }
 
 .btn:hover {
   background-color: rgba(var(--light-color-rgb), 0.2);
 }
 
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+  outline: none;
+}
+
 .btn.active {
   background-color: var(--primary-color);
   color: white;
+}
+
+.btn.active:focus {
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--primary-color);
 }
 
 /* Styles pour les sélecteurs */

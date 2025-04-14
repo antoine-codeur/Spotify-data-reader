@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css'
 import {
   Chart as ChartJS,
@@ -44,6 +44,11 @@ function App() {
   const [timeRange, setTimeRange] = useState<string>('all')
   const [displayCount, setDisplayCount] = useState<number>(50)
   const [artistDisplayCount, setArtistDisplayCount] = useState<number>(30)
+  
+  // References for the active buttons
+  const tracksButtonRef = useRef<HTMLButtonElement>(null)
+  const artistsButtonRef = useRef<HTMLButtonElement>(null)
+  const statsButtonRef = useRef<HTMLButtonElement>(null)
 
   // File paths for the JSON data
   const filePaths = [
@@ -188,6 +193,24 @@ function App() {
     loadFiles()
   }, [])
 
+  // Set focus on the active button when activeView changes or on initial load
+  useEffect(() => {
+    if (activeView === 'tracks' && tracksButtonRef.current) {
+      tracksButtonRef.current.focus();
+    } else if (activeView === 'artists' && artistsButtonRef.current) {
+      artistsButtonRef.current.focus();
+    } else if (activeView === 'stats' && statsButtonRef.current) {
+      statsButtonRef.current.focus();
+    }
+  }, [activeView]);
+
+  // Focus the default active button on initial render
+  useEffect(() => {
+    if (tracksButtonRef.current) {
+      tracksButtonRef.current.focus();
+    }
+  }, []);
+
   // Get unique years from the dataset
   const getYearOptions = () => {
     if (!tracks.length) return []
@@ -226,20 +249,26 @@ function App() {
           <div className="controls">
             <div className="view-selector">
               <button 
-                className={activeView === 'tracks' ? 'active' : ''} 
+                className={`btn ${activeView === 'tracks' ? 'active' : ''}`} 
                 onClick={() => setActiveView('tracks')}
+                ref={tracksButtonRef}
+                autoFocus={activeView === 'tracks'}
               >
                 Top Tracks
               </button>
               <button 
-                className={activeView === 'artists' ? 'active' : ''} 
+                className={`btn ${activeView === 'artists' ? 'active' : ''}`} 
                 onClick={() => setActiveView('artists')}
+                ref={artistsButtonRef}
+                autoFocus={activeView === 'artists'}
               >
                 Top Artists
               </button>
               <button 
-                className={activeView === 'stats' ? 'active' : ''} 
+                className={`btn ${activeView === 'stats' ? 'active' : ''}`} 
                 onClick={() => setActiveView('stats')}
+                ref={statsButtonRef}
+                autoFocus={activeView === 'stats'}
               >
                 Statistics
               </button>

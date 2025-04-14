@@ -5,6 +5,7 @@
   /* Suppression du max-width pour le mode desktop comme demandé */
   margin: 0 auto;
   padding: 2rem;
+  box-sizing: border-box;
 }
 
 .app-header {
@@ -130,4 +131,11 @@
     flex: 1;
     text-align: center;
   }
+}
+
+/* Assurons-nous que le conteneur principal prend toute la largeur */
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

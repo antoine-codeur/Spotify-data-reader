@@ -3,7 +3,7 @@ import { TopArtist, formatTime } from '../../types'
 import { useState, useMemo } from 'react'
 import SearchBar from '../../common/SearchBar/SearchBar'
 import './TopArtistsView.css'
-import './TopTracksView.css' // Pour les styles partagés avec TopTracksView
+import '../TopTracksView/TopTracksView.css' // Pour les styles partagés avec TopTracksView
 
 interface TopArtistsViewProps {
   topArtists: TopArtist[]

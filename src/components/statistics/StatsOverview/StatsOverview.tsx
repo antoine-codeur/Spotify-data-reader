@@ -1,5 +1,5 @@
-import { formatTime } from './types'
-import '../styles/StatsOverview.css'
+import { formatTime } from '../../types'
+import './StatsOverview.css'
 
 interface StatsOverviewProps {
   tracksCount: number

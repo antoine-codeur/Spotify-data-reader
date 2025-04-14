@@ -1,8 +1,8 @@
 import { Bar } from 'react-chartjs-2'
-import { TopTrack, formatTime } from './types'
+import { TopTrack, formatTime } from '../../types'
 import { useState, useMemo } from 'react'
-import SearchBar from './SearchBar'
-import '../styles/TopTracksView.css'
+import SearchBar from '../../common/SearchBar/SearchBar'
+import './TopTracksView.css'
 
 interface TopTracksViewProps {
   topTracks: TopTrack[]

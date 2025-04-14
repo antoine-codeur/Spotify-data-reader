@@ -1,9 +1,9 @@
 import { Bar, Pie } from 'react-chartjs-2'
-import { TopArtist, formatTime } from './types'
+import { TopArtist, formatTime } from '../../types'
 import { useState, useMemo } from 'react'
-import SearchBar from './SearchBar'
-import '../styles/TopArtistsView.css'
-import '../styles/TopTracksView.css' // Pour les styles partagés avec TopTracksView
+import SearchBar from '../../common/SearchBar/SearchBar'
+import './TopArtistsView.css'
+import './TopTracksView.css' // Pour les styles partagés avec TopTracksView
 
 interface TopArtistsViewProps {
   topArtists: TopArtist[]

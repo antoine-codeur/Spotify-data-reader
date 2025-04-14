@@ -1,37 +1,31 @@
-:root {
-  --primary-color: #1DB954;
-  --secondary-color: #191414;
-  --light-color: #FFFFFF;
-  --dark-color: #121212;
-  --accent-color: #1DB954;
-  --gray-color: #535353;
-  --light-gray-color: #b3b3b3;
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-family);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-  line-height: 1.6;
-}
+@import './components/common/common.css';
 
 .app {
   width: 100%;
+  /* Suppression du max-width pour le mode desktop comme demandé */
   margin: 0 auto;
   padding: 2rem;
 }
 
 .app-header {
-  text-align: center;
   margin-bottom: 2rem;
   color: var(--primary-color);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  text-align: left;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .app-header h1 {
@@ -55,44 +49,6 @@ body {
   color: #ff5252;
 }
 
-.file-loader {
-  text-align: center;
-  margin: 2rem 0;
-  padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.file-loader h2 {
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-}
-
-.file-loader p {
-  margin-bottom: 2rem;
-}
-
-.file-loader code {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
-}
-
-.load-button {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary-color);
-  color: var(--light-color);
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.load-button:hover {
-  background-color: #1ed760;
-}
-
 .controls {
   display: flex;
   justify-content: space-between;
@@ -112,243 +68,66 @@ body {
   align-items: center;
 }
 
-.time-filter, .display-count-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.time-filter select, .display-count-selector select {
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color);
-  border: none;
-  border-radius: 5px;
-}
-
-.view-selector button {
-  padding: 0.5rem 1rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.view-selector button.active {
-  background-color: var(--primary-color);
-}
-
-.time-filter {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.time-filter select {
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color);
-  border: none;
-  border-radius: 5px;
-}
-
-.stats-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.stat-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.stat-card h3 {
-  margin-bottom: 0.5rem;
-  color: var(--light-gray-color);
-  font-size: 1rem;
-}
-
-.stat-card p {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-.view-content {
-  margin-top: 2rem;
-}
-
-.view-content h2 {
-  margin-bottom: 1.5rem;
-  color: var(--primary-color);
-}
-
-.chart-container {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-}
-
-.chart-row {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.chart-col {
-  flex: 1;
-  min-width: 300px;
-}
-
-.data-table {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 10px;
-  overflow-x: auto;
-}
-
-.data-table h3 {
-  margin-bottom: 1rem;
-  color: var(--light-gray-color);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-th {
-  color: var(--light-gray-color);
-  font-weight: normal;
-  position: relative;
-}
-
-th[style] {
-  transition: background-color 0.2s;
-}
-
-th[style]:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.03);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.stat-box {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 10px;
-}
-
-.stat-box h3 {
-  margin-bottom: 1rem;
-  color: var(--light-gray-color);
-}
-
-.stat-value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.stat-description {
-  color: var(--light-gray-color);
-  font-size: 0.9rem;
-}
-
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.search-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.search-bar input {
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color);
-  border: none;
-  border-radius: 5px;
-  min-width: 240px;
-  font-size: 0.9rem;
-}
-
-.search-bar input::placeholder {
-  color: var(--light-gray-color);
-  opacity: 0.7;
-}
-
-.search-bar input:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3);
-}
-
-.clear-search {
-  position: absolute;
-  right: 8px;
-  background: none;
-  border: none;
-  color: var(--light-gray-color);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.clear-search:hover {
-  color: var(--light-color);
-}
-
-.no-results {
-  text-align: center;
-  color: var(--light-gray-color);
-  padding: 2rem 0;
-  font-style: italic;
+@media (max-width: 1024px) {
+  .app {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
   .controls {
     flex-direction: column;
     gap: 1rem;
     align-items: flex-start;
   }
   
-  .chart-row {
+  .controls-right {
     flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
   
-  .chart-col {
+  .header-left {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0.75rem;
+  }
+  
+  .app-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .app-header p {
+    font-size: 0.95rem;
+  }
+  
+  .view-selector {
     width: 100%;
+    justify-content: space-between;
+  }
+  
+  .view-selector button {
+    flex: 1;
+    text-align: center;
   }
 }

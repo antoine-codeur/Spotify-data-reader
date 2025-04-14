@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './styles/App.css'
+import './App.css'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,13 +11,13 @@ import {
   ArcElement
 } from 'chart.js'
 import { SpotifyTrack, TopTrack, TopArtist } from './components/types'
-import StatsOverview from './components/StatsOverview'
-import TopTracksView from './components/TopTracksView'
-import TopArtistsView from './components/TopArtistsView'
-import StatsView from './components/StatsView'
-import YearSelector from './components/YearSelector'
-import FileLoader from './components/FileLoader'
-import ThemeToggle from './components/ThemeToggle'
+import StatsOverview from './components/statistics/StatsOverview/StatsOverview'
+import TopTracksView from './components/data-view/TopTracksView/TopTracksView'
+import TopArtistsView from './components/data-view/TopArtistsView/TopArtistsView'
+import StatsView from './components/statistics/StatsView/StatsView'
+import YearSelector from './components/common/YearSelector/YearSelector'
+import FileLoader from './components/data-view/FileLoader/FileLoader'
+import ThemeToggle from './components/common/ThemeToggle/ThemeToggle'
 
 // Register Chart.js components
 ChartJS.register(

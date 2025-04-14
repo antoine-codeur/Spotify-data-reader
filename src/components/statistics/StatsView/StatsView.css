@@ -1,4 +1,4 @@
-@import '../styles/common.css';
+@import '../common.css';
 
 .stats-grid {
   display: grid;

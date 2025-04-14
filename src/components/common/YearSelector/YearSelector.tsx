@@ -1,4 +1,4 @@
-import '../styles/YearSelector.css'
+import './YearSelector.css'
 
 interface YearSelectorProps {
   timeRange: string

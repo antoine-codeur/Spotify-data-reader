@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css'
 import {
   Chart as ChartJS,
@@ -162,8 +162,10 @@ function App() {
   }
 
   // Helper function to update stats
-  const setStatsForView = (tracksCount: number, totalMs: number, uniqueTracksCount: number, uniqueArtistsCount: number) => {
+  const setStatsForView = (_tracksCount: number, totalMs: number, _uniqueTracksCount: number, uniqueArtistsCount: number) => {
     setTotalListeningTime(totalMs)
+    setUniqueArtistsCount(uniqueArtistsCount)
+    // We're using these variables in StatsOverview component, but not directly in this function
   }
 
   // Filter data by time range
@@ -211,7 +213,7 @@ function App() {
     }
   }, []);
 
-  // Get unique years from the dataset
+  // Get unique years from the dataset for the year selector
   const getYearOptions = () => {
     if (!tracks.length) return []
     
@@ -223,8 +225,6 @@ function App() {
     
     return Array.from(years).sort()
   }
-
-  const yearOptions = getYearOptions()
 
   return (
     <div className="app">

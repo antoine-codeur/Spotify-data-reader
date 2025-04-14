@@ -141,6 +141,43 @@ body {
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%231DB954' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 30px;
+  width: auto;
+  min-width: max-content;
+  cursor: pointer;
+}
+
+/* Ajout des états hover et focus pour tous les select */
+.select:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3);
+}
+
+/* Style des options du select */
+select.select option {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Assure que le select a le bon style dans les deux thèmes */
+[data-theme="light"] select.select {
+  background-color: var(--bg-secondary-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] select.select {
+  background-color: var(--bg-secondary-color);
+  color: var(--text-color);
 }
 
 /* Media queries communes */

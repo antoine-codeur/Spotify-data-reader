@@ -6,24 +6,8 @@
   gap: 0.5rem;
 }
 
-.time-filter select {
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.time-filter select:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-.time-filter select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3);
-}
+/* Les styles spécifiques aux select ont été déplacés vers common.css */
+/* pour assurer la cohérence entre tous les select de l'application */
 
 @media (max-width: 768px) {
   .time-filter {

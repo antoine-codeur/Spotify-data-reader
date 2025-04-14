@@ -1,0 +1,11 @@
+node_modules
+dist
+.git
+.github
+.gitignore
+.vscode
+*.log
+README.md
+.DS_Store
+.env*
+!.env.example

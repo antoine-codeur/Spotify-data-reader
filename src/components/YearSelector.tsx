@@ -14,6 +14,7 @@ const YearSelector = ({ timeRange, yearOptions, onYearChange }: YearSelectorProp
         id="timeRange" 
         value={timeRange} 
         onChange={(e) => onYearChange(e.target.value)}
+        className="select"
       >
         <option value="all">All Time</option>
         {yearOptions.map(year => (

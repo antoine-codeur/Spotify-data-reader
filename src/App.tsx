@@ -38,6 +38,7 @@ function App() {
   const [topTracks, setTopTracks] = useState<TopTrack[]>([])
   const [topArtists, setTopArtists] = useState<TopArtist[]>([])
   const [totalListeningTime, setTotalListeningTime] = useState<number>(0)
+  const [uniqueArtistsCount, setUniqueArtistsCount] = useState<number>(0)
   const [activeView, setActiveView] = useState<string>('tracks')
   const [isFilesLoaded, setIsFilesLoaded] = useState<boolean>(false)
   const [timeRange, setTimeRange] = useState<string>('all')
@@ -141,12 +142,23 @@ function App() {
       }
     })
     
-    // Sort artists by play count and get top 30
-    const sortedArtists = Array.from(artistMap.values())
+    // Get all unique artists (for accurate count in statistics)
+    const allUniqueArtists = Array.from(artistMap.values())
+    
+    // Sort artists by play count for display
+    const sortedArtists = [...allUniqueArtists]
       .sort((a, b) => b.count - a.count)
-      .slice(0, 30)
     
     setTopArtists(sortedArtists)
+    setUniqueArtistsCount(allUniqueArtists.length)
+    
+    // Update the component with the proper stats
+    setStatsForView(tracks.length, totalMs, sortedTracks.length, allUniqueArtists.length)
+  }
+
+  // Helper function to update stats
+  const setStatsForView = (tracksCount: number, totalMs: number, uniqueTracksCount: number, uniqueArtistsCount: number) => {
+    setTotalListeningTime(totalMs)
   }
 
   // Filter data by time range
@@ -247,6 +259,7 @@ function App() {
                     id="displayCount" 
                     value={displayCount} 
                     onChange={(e) => setDisplayCount(Number(e.target.value))}
+                    className="select"
                     >
                     <option value="10">Top 10</option>
                     <option value="25">Top 25</option>
@@ -258,7 +271,7 @@ function App() {
                     <option value="2500">Top 2500</option>
                     <option value="5000">Top 5000</option>
                     <option value="10000">Top 10000</option>
-                    <option value={topTracks.length}>All</option>
+                    <option value={topTracks.length}>All ({topTracks.length})</option>
                     </select>
                 </div>
               )}
@@ -270,6 +283,7 @@ function App() {
                     id="artistDisplayCount" 
                     value={artistDisplayCount} 
                     onChange={(e) => setArtistDisplayCount(Number(e.target.value))}
+                    className="select"
                     >
                     <option value="10">Top 10</option>
                     <option value="20">Top 20</option>
@@ -278,7 +292,9 @@ function App() {
                     <option value="100">Top 100</option>
                     <option value="200">Top 200</option>
                     <option value="500">Top 500</option>
-                    <option value={topArtists.length}>All</option>
+                    <option value="1000">Top 1000</option>
+                    <option value="2500">Top 2500</option>
+                    <option value={uniqueArtistsCount}>All ({uniqueArtistsCount})</option>
                     </select>
                 </div>
               )}
@@ -289,7 +305,7 @@ function App() {
             tracksCount={tracks.length}
             totalListeningTime={totalListeningTime}
             uniqueTracksCount={topTracks.length}
-            uniqueArtistsCount={topArtists.length}
+            uniqueArtistsCount={uniqueArtistsCount}
           />
           
           {activeView === 'tracks' && (
